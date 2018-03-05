@@ -1,0 +1,74 @@
+import React, { Component } from 'react';
+import { Text, View, StyleSheet, StatusBar, ScrollView } from 'react-native';
+import { Constants } from 'expo';
+
+// or any pure java modules available in npm
+import { Header, List, ListItem, FormInput, Button } from 'react-native-elements'; // 0.18.5
+
+export default class App extends Component {
+  state = {
+    list: [
+      { id: 0, title: 'Fazer café', completed: false },
+      { id: 1, title: 'Ir do Workshop', completed: true}
+    ],
+    newTodoText: 'Outro todo'
+  };
+  
+  addNewTodo = () => {
+    this.setState({
+      list: [ ...this.state.list, {
+        id: Math.random(),
+        title: this.state.newTodoText,
+        completed: false,
+      }]
+    })
+  }
+  
+  render() {
+    return (
+      <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
+        <Header
+          centerComponent={{ text: 'CampusTodo', style: { color: '#FFF' } }}
+        />
+        
+        <View style={{ marginVertical: 20 }}>
+          <FormInput 
+            placeholder="Digite um novo todo"
+            onChangeText={text => { this.setState({
+                newTodoText: text
+              })
+            }}
+          />
+          <Button 
+            title="Adicionar todo" 
+            style={{ marginTop: 10 }} 
+            onPress={() => { this.addNewTodo(); }} 
+          />
+        </View>
+        
+        <ScrollView>
+          <List>
+            { this.state.list.map(todo => (
+                <ListItem
+                  key={todo.id}
+                  title={todo.title}
+                  hideChevron
+                  titleStyle={{
+                    textDecorationLine: todo.completed ? 'line-through' : 'none'
+                  }}
+                />
+            ))}
+          </List>
+        </ScrollView>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+

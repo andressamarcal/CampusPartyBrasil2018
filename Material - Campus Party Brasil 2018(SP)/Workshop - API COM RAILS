@@ -1,0 +1,79 @@
+CRIANDO UM API EM RUBY AND RAILS
+
+
+O que é uma API = Aplication Program Interface 
+Uma maneira de compartilhar recursos na internet, quem vai enviar sabe o que enviar e quem receber ja sabe o que irá receber, dados, ferramentas, etc... compartilhar esses recursos através de uma ponte, ou seja a API. 
+
+Endpoint = URL's 
+
+HTTP = Protocolo de comunicação hypertextos
+
+REST = Arquitetura, uma estrutura. Alguns principios de como se deve fazer/criar. Conjunto de principios. Recursos com id unicos. Stateless. Conjunto de operações bem definidas 
+
+REST X RESTFUL
+REST SAO OS PRINCIPIOS, RESTFUL É UMA API QUE SEGUE ESSES PRINCIPIOS.
+
+
+SOAP =
+
+Principais metodos HTTP(PROTOCOLO): GET , POST, PUT, DELETE, PATCH
+
+FORMATOS DE COMUNICAÇÃO:
+
+YAML - ADEPTO DE IDENTAÇÃO
+XML - FOI SUBSTITUIDO PELO JSON, MAIS VERBOSO. 
+JSON - OBJETO JAVASCRIPT
+
+Modelo api e clientes
+SITES
+CHATBOTS
+APPS
+
+
+Como funciona a autenticação nas API's:
+Token simples - É o mesmo token toda vez
+Token Dinamico - Quando fizer uma proxima chamada, é enviado outro token. o token é mudado a cada chamada
+Jwt
+
+
+Ferramentas de autenticação:
+Devise Simples token
+Knock
+Device
+
+Como funciona a autorização das API's:
+AUTENTICAÇÃO - AÇAO DE VERIFICAR A AUTENTICIDADE DE ALGO
+AUTORIZAÇÃO - ATO DE SABENDO QUEM A PESSOA É, EU DECIDO SE A PESSOA/COISA TEM/TERÁ PERMISSÃO OU NÃO PARA FAZER O QUE QUER
+
+FERRAMENTAS DE AUTORIZAÇÃO:
+Cancancan
+Pundit
+ROlify
+
+Quando criar uma API?
+Quando eu sei que eu possuo recursos no meu servidor para varios pequenos clientes.
+Ao inves de reescrever os recursos, eu consumo uma API para reaproveitar.
+Reaproveitamento de recursos!
+
+O que é versionamento de API?
+....../v1
+....../v2
+na url podemos ver um exemplo de versões. é bom para melhorias na api.
+
+Como manter uma API segura?
+Verificar se esta tendo um excesso de chamadas de algum determinado ip, excesso de tentativas de password.
+
+Ferramentas:
+Rack Attack
+
+Como documentar uma API?
+É bastante recomendado. há ferramentas para isso
+
+Ferramentas para ver as chamadas e respostas da API:
+CURL
+Postman
+
+#	OBS: Microserviços	#
+APi's muito pequenas, praticamente só de 1 endpoint
+
+Upar API em cloud, talvez seja mais seguro e performatico.

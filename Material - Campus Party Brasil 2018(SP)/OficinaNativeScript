@@ -1,0 +1,18 @@
+http://code.rocketseat.com.br/gonative-week - #Conteudo ate domingo#
+comunidade.rocketseat.com.br
+
+
+
+
+Oficina -  Native Script, dada por Diego Fernandes - Rocket Seat
+
+1 - Baixar o Aplicativo EXPO - Android ou IOS - testa as apps nas 2 plataformas, deixando a dependencia da SDK do ANDROID e o XCODE (so pega no IOS)
+
+2 - Abrir o snack.expo.io - Scanear o QR code da maquina usando o celular, no expo client
+
+3 - Deixar apenas Files e Dark Theme ativado no snack
+
+> sempre será importado a lib React
+> component, conjunto de codigo de logica, de marcação e de visualização
+> todo component, irá usar um export antes da classe. Ele so exporta 1 component por arquivo
+> ecmascript - conjuntos e normas da linguagem js

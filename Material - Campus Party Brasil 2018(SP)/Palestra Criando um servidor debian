@@ -1,0 +1,133 @@
+SecurityCast - TElegram
+
+
+
+https://flisol.com.br/web
+
+
+
+WORKSHOP SERVIDOR DEBIAN COM MARIADB E PHP
+
+
+Oficina Web Debian na Campus Party 11
+Wellton Costa - contato@wellton.com.br
+
+1 - ter virtualbox
+
+2 - Para quem usa amd64
+
+http://debian.c3sl.ufpr.br/debian-cd/9.3.0-live/amd64/iso-hybrid/debian-live-9.3.0-amd64-mate.iso
+
+Para quem usa i386
+
+http://debian.c3sl.ufpr.br/debian-cd/9.3.0-live/i386/iso-hybrid/debian-live-9.3.0-i386-mate.iso
+
+
+3 - criar maquina debian no virtualbox e carregar a imagem.
+
+
+
+4 - instalaÃ§Ã£o de programas para criar servidor web em debian 9
+sudo apt update 
+sudo 
+apt install apache2 php mariadb-server phpmyadmin
+
+sudo service apache2 start
+sudo service mariadb start
+
+
+
+5 - no navegador, digite: localhost
+
+6 - 
+sudo chmod 777 -R /var/www/html
+cd /var/www/html
+rm index.html
+nano pagina.php
+
+(coloque seu nome, depois faca CTRL+O, enter, CTRL+X
+
+
+f5 na pagina
+
+7 - Configurando o Gerenciador de Banco de Dados MariaDB (antigo MySQL).
+Crie um usuario:
+
+////////
+Isso ajudarÃ¡ vocÃª a criar um usuÃ¡rio no MariaDB/MySQL com privilÃ©gios:
+Acesse o Root do seu sistema operacional, digite mysql. Na linha de comando do  MySQL digite:
+////
+sudo -s
+mysql
+
+CREATE USER 'usuario'@'localhost' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON * . * TO 'usuario'@'localhost';
+FLUSH PRIVILEGES;
+Pronto. Agora vocÃª pode acessar mysql -u usuario -p e colocar a senha 123.
+
+tambÃ©m funciona pro PHPMyAdmin e Ã© o usuÃ¡rio usuario com senha 123 que iremos utilizar na sala de aula.
+
+8 - criando banco de dados
+
+nosso exemplo usara cadastro de usuarios na campus, entao, o nome pro banco de dados sera campus:
+
+CREATE DATABASE campus;
+
+a tabela sera criada eh usuarios: e os campos serao : id, nome, email, senha
+
+USE campus;
+CREATE TABLE usuarios( id SERIAL, nome VARCHAR(50), email VARCHAR(50), senha VARCHAR(50)); (de enter)
+
+para ver a tabela criada, faca
+
+DESC usuarios;
+
+
+9 CRIAR formulario HTML
+
+sudo nano /var/www/html/pagina.html
+
+<html>
+   <head>
+      <title>titulo</title>
+   </head>
+
+   <body>
+	<h1>SERVIDOR com DEBIAN. Oficina da Campus</h1>
+
+	<form action="servidor.php" method="POST">
+		<h2>Cadastre-se</h2>
+		Nome: <input type="text" name="nome" /> <br>
+		Email: <input type="email" name="email" /><br>
+		Senha: <input type="password" name="senha" /><br>
+		<input type="submit" value="CADASTRAR">
+	</form>
+   </body>
+</html>
+
+
+no navegador faca localhost/pagina.html
+
+
+
+10 - Criar pagina PHP que fara a ponte entre o HTML e o banco de dados criado
+
+
+sudo nano /var/www/html/servidor.php
+
+<?php
+
+$nome = $_POST["nome"];
+$email = $_POST["email"];
+$senha = md5($_POST["senha"]);
+
+echo $nome . "<br>" . $email . "<br>" . $senha . "<br>";
+
+
+
+//ABRIR CONEXAO COM O MariDB (antigo mysql)
+
+$conexao = mysqli_connect("localhost", "usuario", "123");
+
+if($conexao) echo "CONEXAO OK";
+else echo "ERRO";
